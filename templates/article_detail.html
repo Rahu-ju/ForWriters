@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %} Article detail {% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col">
+    <div class="card bg-white shadow rounded">
+      <div class="card-body">
+        <h4 class="card-title">{{ article.title }}</h4>
+        <span class="float-right icon-interact">
+          <a href=""><i class="far fa-heart"></i></a>
+
+          <a href="" class="facebook-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href=""><i class="fab fa-twitter"></i></a>
+          <a href=""><i class="fas fa-share-alt ml-2"></i></a>
+        </span>
+        <p class="card-text">{{ article.body }}</p>
+        <br>
+        <span class="text-muted float-right">{{ article.author | title }} | {{ article.date | date:"d M Y" }}</span>
+        <br>
+        <hr>
+        <ul class="list-inline float-left">
+          <li class="list-inline-item"><a href="{% url 'article_edit' article.pk %}">Edit</a></li>|
+          <li class="list-inline-item"><a href="{% url 'article_delete' article.pk %}">Delete</a></li>|
+          <li class="list-inline-item"><a href="{% url 'comment' article.pk %}">Comment</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Comment section -->
+<div class="row">
+  <div class="col ">
+    <div class="card shadow mx-auto w-75">
+
+      <div class="card-body">
+        <div class="mx-auto w-50">
+          {% for comment in article.comments.all %}
+
+                <div class="comment-section">
+                  <div class="list-inline">
+                    <img class="list-inline-item img-fluid rounded-circle" src="https://picsum.photos/50/50/?random" alt="">
+                    <h6 class="list-inline-item mb-2">{{ comment.author }}</h6>
+                    <span class="list-inline-item ml-8">date</span>
+                  </div>
+                  <div>
+                    <p class="pl-6 mt">{{ comment.comment }}</p>
+                  </div>
+                </div>
+
+                <!-- comment reply section -->
+                {% for reply in comment.replys.all %}
+
+                  <div class="comment-reply-section ml-8">
+                    <div class="list-inline">
+                      <img class="list-inline-item img-fluid rounded-circle" src="https://picsum.photos/50/50/?random" alt="">
+                      <h6 class="list-inline-item mb-2">{{ reply.author }}</h6>
+                      <span class="list-inline-item ml-8">date</span>
+                    </div>
+                    <div>
+                      <p class="pl-6 mt">{{ reply.reply }}</p>
+                    </div>
+                  </div>
+
+                {% endfor %}
+          {% endfor %}
+
+
+
+
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

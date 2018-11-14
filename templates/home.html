@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--shows 4 article -->
+<div class="row">
+
+    {% for article in object_list|slice:"0:4" %}
+    <div class="card  shadow rounded d-flex flex-wrap card-custom  bg-white">
+      <div class="card-body">
+        <h3 class="card-title"><a href="{% url 'article_detail' article.pk %}">{{ article.title | title }}</a></h3>
+        <p class="card-text">{{ article.body | truncatechars:80 }}</p>
+        <hr>
+        <span class="text-muted">{{ article.author|title }} | {{ article.date | date:"D d M Y" }}</span>
+      </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+
+<!--Jumbotron section-->
+<div class="row mt-4">
+
+  <div class="jumbotron">
+      <h1 class="display-6">Helloo, there..!</h1>
+      <p class="lead">It's a place where beautiful minded people can write something on a topic as they desired and can share with the worlds to make the human civilization smart!!.
+      <hr class="my-4">
+      <p>Writers who wants to write and show their article to anyone and also able to give some restrictions to their article to read more..</p>
+      <p class="lead">
+        <a href="{% url "article_list" %}" class="btn btn-outline-success">All articles</a>
+      </p>
+  </div>
+
+</div>
+
+
+<!-- Shows 8 article-->
+<div class="row">
+
+    {% for article in object_list|slice:"5:13" %}
+    <div class="card  shadow rounded d-flex flex-wrap card-custom  bg-white">
+      <div class="card-body">
+        <h3 class="card-title"><a href="{% url 'article_detail' article.pk %}">{{ article.title | title }}</a></h3>
+        <p class="card-text">{{ article.body | truncatechars:80 }}</p>
+        <hr>
+        <span class="text-muted">{{ article.author }} | {{ article.date | date:"D d M Y" }}</span>
+      </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+
+
+{% endblock %}

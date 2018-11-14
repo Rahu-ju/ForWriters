@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %} News {% endblock %}</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,900,700,400italic" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap4-charming.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+  </head>
+  <body>
+    <div class="container">
+      <!--For  navigation -->
+      <div class="row">
+          <div class="col">
+
+            <div class="text-center my-4 mb-6">
+              <a class="navbar-brand logo" href="{% url 'home' %}">For Writers <small class="blockquote-footer">make the world beautiful!..</small> </a>
+              <div class="main-menu ml-auto float-right mt-7">
+
+                {% if user.is_authenticated %}
+
+
+                    <a href="{% url 'article_create' %}" class="mr-2 menu"><i class="fas fa-pen-fancy pen-size"></i> write</a>
+                    <span class='menu' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.username}}<i class="fas fa-bars"></i></span>
+                    <div class="dropdown-menu  shadow dropdown-style" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top:-56px; left: -9px; will-change: transform;">
+                      <a class="dropdown-item" href="www.google.com">Just link</a>
+                      <a class="dropdown-item" href="#!">just link</a>
+                      <a class="dropdown-item" href="#!">just link</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{% url 'password_change' %}">Change password</a>
+                      <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                    </div>
+
+                {% else %}
+                  <span class="ml-auto pt-4"><a href="{% url 'login' %}">signin</a> | <a href="{% url 'signup' %}">signup</a></span>
+                {% endif %}
+              </div>
+
+            </div>
+
+
+
+
+
+          </div>
+
+
+      </div>
+
+    <!-- navigation end -->
+  {% block content %}
+
+  {% endblock %}
+
+  <!--Footer row-->
+  <div class="row mt-4 mb-2">
+    <div class="col">
+      <ul class="list-inline text-center">
+        <li class="list-inline-item">Terms</li>
+        <li class="list-inline-item">Privecy</li>
+        <li class="list-inline-item">Security</li>
+        <li class="list-inline-item">Contact News</li>
+      </ul>
+    </div>
+  </div>
+
+  </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+  <script>
+
+    $('.asteriskField').remove();
+    $('.col-form-label').addClass('input-font');
+    $('.form-control').addClass('custom-input');
+
+    </script>
+  </body>
+</html>
