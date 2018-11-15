@@ -148,8 +148,3 @@ CRISPY_TEMPLATE_PACK  = 'bootstrap4'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 #sendgrid server conf to send email
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
